@@ -77,7 +77,8 @@ r"""{
                                */
                               #include <cstdio>
                               class mykls { void myfunc(int); };
-                              // mykls::myfunc() is my name
+                              //! mykls::myfunc() is my name
+                              //! @param thearg is an argument
                               void mykls::myfunc(int thearg) {
                                   // myfunc() is a methd of mykls on thearg and retval
                                   int retval = thearg;

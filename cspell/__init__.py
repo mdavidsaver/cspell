@@ -19,21 +19,26 @@ import hunspell
 
 # separation of content to spell check
 comment = re.compile(r'''
-    /\*(.*?)\*/      # C comment
+    /\*(.*?)\*/       # C comment
     |
-    //(.*?)$     # C++ end of line
+    //(.*?)$           # C++ end of line
     |
     "((?:[^"\n]|\")*)" # String literal
 ''', re.MULTILINE|re.DOTALL|re.VERBOSE)
 
 # extraction of words from content
-textword = re.compile(r'\b[a-zA-Z][a-z\'-]*(?:-[a-zA-Z]*)?[a-z]\b')
-
-# separators bounding a code term
-codesep = r'[\s/,:;<>()\[\]+.-]'
+textword = re.compile(r'''
+    (?:^|(?<=[\s]))                       # start of string or look-behind for whitespace
+    [a-zA-Z][a-z\'-]*(?:-[a-zA-Z]*)?[a-z] # word with optional hyphen
+    (?=\s)                                # look-ahead for whitespace
+''', re.VERBOSE)
 
 # extraction of terms from code
-codeword = re.compile(r'(?<='+codesep+') [a-zA-Z_][a-zA-Z0-9_]+ (?='+codesep+')', re.VERBOSE)
+codeword = re.compile(r'''
+    (?:^|(?<=[\s/,:;<>()\[\]+.-]))   # start of string or look-behind for operator character or whitespace
+    [a-zA-Z_][a-zA-Z0-9_]+            # C identifier
+    (?=[\s/,:;<>()\[\]+.-])          # look-ahead for operator character or whitespace
+''', re.VERBOSE)
 
 _log = logging.getLogger('cspell')
 

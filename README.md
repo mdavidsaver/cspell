@@ -68,13 +68,10 @@ $ python3 -m cspell -q -D personal.dic -W example.dic -F example.json example.c
   // "functor" "futon"
   // ... // myfunc() is a functon on thearg and retval
   ,
-  "param": "para"
-  // "pram" "paras" "pa ram" "pa-ram" "par am" "par-am" "para m" "rampart"
-  // ... * @param thearg is the argument
-  ,
   "spelll": "spell"
   // "spells" "spell l"
   // ... *  Who can't spelll rite
+}
 }
 ```
 
@@ -90,7 +87,7 @@ Shows
 
 ```diff
 --- example.c.orig      2021-08-13 14:13:49.980036186 -0700
-+++ example.c   2021-08-13 14:13:52.580047911 -0700
++++ example.c   2021-08-13 14:42:51.055857533 -0700
 @@ -1,15 +1,15 @@
  /** Copyright 2021 Michael Davidsaver
 -*  Who can't spelll rite
@@ -98,8 +95,7 @@ Shows
  */
  #include <stdio.h>
  /** @brief special
-- * @param thearg is the argument
-+ * @para thearg is the argument
+  * @param thearg is the argument
   */
  void myfunc(int thearg) {
 -    // myfunc() is a functon on thearg and retval
