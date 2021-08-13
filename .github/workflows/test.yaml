@@ -1,0 +1,45 @@
+name: CSpell
+
+on: [push, pull_request]
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  test:
+    runs-on: "ubuntu-latest"
+    name: Test ${{ matrix.python-version }}
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [3.7, 3.8, 3.9, 3.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Test it
+        run: |
+          set -e -x
+          which python
+          python --version
+          python -m pip --version
+
+          sudo apt-get update
+          sudo apt-get -y install libhunspell-dev
+
+          python -m pip install -U pip setuptools
+          python -m pip install pytest
+          python -m pip install -r requirements.txt
+
+          python -m pytest cspell
+
+          python setup.py sdist --formats=gztar
+          python -m pip install -v dist/cspell-*.tar.gz
+
+          which cspell
+          cspell -h
