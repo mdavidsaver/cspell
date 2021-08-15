@@ -28,9 +28,9 @@ comment = re.compile(r'''
 
 # extraction of words from content
 textword = re.compile(r'''
-    (?:^|(?<=[\s]))                       # start of string or look-behind for whitespace
+    (?:^|(?<=[\s(]))                      # start of string or look-behind for whitespace or punctuation
     [a-zA-Z][a-z\'-]*(?:-[a-zA-Z]*)?[a-z] # word with optional hyphen
-    (?=\s)                                # look-ahead for whitespace
+    (?:$|(?=[\s.,;)]))                    # end of string or look-ahead for whitespace or punctuation
 ''', re.VERBOSE)
 
 # extraction of terms from code

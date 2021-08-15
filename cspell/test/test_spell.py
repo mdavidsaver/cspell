@@ -9,7 +9,7 @@ class TestCollect(TestCase):
     def test_c(self):
         code = self.writeFile('test.c', r'''
                               /** Copyright 2021 Michael Davidsaver
-                               *  Who cann't spelll rite
+                               *  Who cann't spelll.
                                */
                               #include <stdio.h>
                               void myfunc(int thearg) {
@@ -54,7 +54,7 @@ r"""{
   ,
   "cann't": "can't"
   // "cannot"
-  // ... *  Who cann't spelll rite
+  // ... *  Who cann't spelll.
   ,
   "commment": "comment"
   // "commitment" "commencement" "commandment" "commence"
@@ -66,14 +66,14 @@ r"""{
   ,
   "spelll": "spell"
   // "spells" "spell l"
-  // ... *  Who cann't spelll rite
+  // ... *  Who cann't spelll.
 }
 """)
 
     def test_cxx(self):
         code = self.writeFile('test.cpp', r'''
                               /** Copyright 2021 Michael Davidsaver
-                               *  Who cann't spelll rite
+                               *  Who cann't spelll.
                                */
                               #include <cstdio>
                               class mykls { void myfunc(int); };
@@ -124,7 +124,7 @@ r"""{
   ,
   "cann't": "can't"
   // "cannot"
-  // ... *  Who cann't spelll rite
+  // ... *  Who cann't spelll.
   ,
   "commment": "comment"
   // "commitment" "commencement" "commandment" "commence"
@@ -136,6 +136,6 @@ r"""{
   ,
   "spelll": "spell"
   // "spells" "spell l"
-  // ... *  Who cann't spelll rite
+  // ... *  Who cann't spelll.
 }
 """)
